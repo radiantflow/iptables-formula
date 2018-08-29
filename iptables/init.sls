@@ -144,7 +144,7 @@
         - require:
           - pkg: iptables_packages
 
-    {%- if grains.ipv6|default(False) and service.ipv6|default(True) %}
+    {%- if grains.ipv6|default(False) and firewall.ipv6|default(True) %}
     iptables_{{ chain_name }}_ipv6:
       iptables.chain_present:
         - family: ipv6
@@ -168,7 +168,7 @@
         - require:
           - iptables: iptables_{{ chain_name }}
 
-      {%- if grains.ipv6|default(False) and service.ipv6|default(True) %}
+      {%- if grains.ipv6|default(False) and firewall.ipv6|default(True) %}
     iptables_{{ chain_name }}_ipv6_policy:
       iptables.set_policy:
         - family: ipv6
